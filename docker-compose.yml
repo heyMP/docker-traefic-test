@@ -7,13 +7,13 @@ services:
       - /home/node/html/node_modules
     command: ["npm", "start"]
     labels:
-      - "traefik.frontend.rule=Host:cdn.localhost"
+      - "traefik.frontend.rule=Host:app.${DOMAIN}"
       - "traefik.port=80"
 
   whoami:
     image: emilevauge/whoami # A container that exposes an API to show its IP address
     labels:
-      - "traefik.frontend.rule=Host:whoami.docker.localhost"
+      - "traefik.frontend.rule=Host:whoami.docker.${DOMAIN}"
 
   reverse-proxy:
     image: traefik # The official Traefik docker image
